@@ -39,9 +39,10 @@ RUN apt-get update && \
       libxi-dev \
       libgl1-mesa-glx \
       libgl-dev && \
-      cargo install umberwm alacritty && \
+      cargo install umberwm alacritty myumberbar && \
       useradd -m user --uid=1000
-RUN cargo install myumberbar
+RUN env DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+      compton
 USER user
 WORKDIR /home/user
 RUN wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/DroidSansMono.zip
@@ -49,6 +50,7 @@ RUN unzip DroidSansMono.zip
 RUN mkdir ~/.fonts
 RUN unzip DroidSansMono.zip -d ~/.fonts
 RUN fc-cache -fv
-RUN mkdir ~/.config && umberwm
+RUN mkdir ~/.config
+COPY umberwm.ron .config/umberwm.ron
 COPY ./start-umberwm .
 CMD ["./start-umberwm"]
