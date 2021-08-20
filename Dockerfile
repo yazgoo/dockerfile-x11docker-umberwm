@@ -43,6 +43,9 @@ RUN apt-get update && \
       useradd -m user --uid=1000
 RUN env DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
       compton
+RUN env DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+      hsetroot
+RUN chsh -s /bin/bash user
 USER user
 WORKDIR /home/user
 RUN wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/DroidSansMono.zip
@@ -52,5 +55,6 @@ RUN unzip DroidSansMono.zip -d ~/.fonts
 RUN fc-cache -fv
 RUN mkdir ~/.config
 COPY umberwm.ron .config/umberwm.ron
+COPY change-color.sh .
 COPY ./start-umberwm .
 CMD ["./start-umberwm"]
