@@ -38,13 +38,11 @@ RUN apt-get update && \
       libxrandr-dev \
       libxi-dev \
       libgl1-mesa-glx \
-      libgl-dev && \
+      libgl-dev \
+      compton \
+      hsetroot && \
       cargo install umberwm alacritty myumberbar && \
       useradd -m user --uid=1000
-RUN env DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-      compton
-RUN env DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-      hsetroot
 RUN chsh -s /bin/bash user
 USER user
 WORKDIR /home/user

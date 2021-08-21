@@ -106,7 +106,7 @@
     },
     command_callbacks: {
         OnChangeWorkspace: [
-            "./change-color.sh",
+            "./change-color.sh", "%workspace_name%",
         ],
     },
 )
