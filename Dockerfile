@@ -43,6 +43,9 @@ RUN apt-get update && \
       hsetroot && \
       cargo install umberwm alacritty myumberbar && \
       useradd -m user --uid=1000
+RUN cargo install umberwm
+RUN env DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+      x11-apps
 RUN chsh -s /bin/bash user
 USER user
 WORKDIR /home/user
@@ -54,5 +57,8 @@ RUN fc-cache -fv
 RUN mkdir ~/.config
 COPY umberwm.ron .config/umberwm.ron
 COPY change-color.sh .
+COPY action-handler.sh .
+COPY alacritty-umbertutor.yml .
+COPY umbertutor.sh .
 COPY ./start-umberwm .
 CMD ["./start-umberwm"]

@@ -1,3 +1,3 @@
 all:
-	docker build -t x11docker-umberwm . && \
-		x11docker --user=RETAIN --gpu --desktop x11docker-umberwm:latest
+	docker build -t umberwm . && \
+		x11docker --user=RETAIN --gpu --desktop umberwm:latest
