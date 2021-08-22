@@ -10,7 +10,7 @@
             left: 0,
             right: 0,
             bottom: 0,
-            top: 7,
+            top: 100,
             gap: 20,
         )
     ],
@@ -105,8 +105,13 @@
         ],
     },
     command_callbacks: {
-        OnChangeWorkspace: [
-            "./change-color.sh", "%workspace_name%",
-        ],
+        OnChangeWorkspace: [ "./action-handler.sh", "ChangeWorkspace", "%workspace_name%" ],
+        OnSwitchWindow: [ "./action-handler.sh", "SwitchWindow", "%window_id%" ],
+        OnSerializeAndQuit: [ "./action-handler.sh", "SerializeAndQuit" ],
+        OnCloseWindow: [ "./action-handler.sh", "CloseWindow", "%window_id%"],
+        OnSetupWindow: [ "./action-handler.sh", "SetupWindow", "%window_id%"],
+        OnChangeLayout: [ "./action-handler.sh", "ChangeLayout", "%layout%"],
+        OnToggleGap: [ "./action-handler.sh", "ToggleGap", "%with_gap%"],
+        OnQuit: [ "./action-handler.sh", "Quit"],
     },
 )

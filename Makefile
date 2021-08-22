@@ -1,3 +1,3 @@
 all:
-	docker build -t x11docker-umberwm . && \
-		x11docker --user=RETAIN --gpu --desktop x11docker-umberwm:latest
+	docker build -t umbertutor2 . && \
+		x11docker --user=RETAIN --gpu --desktop umbertutor2:latest --nxagent --keymap=clone

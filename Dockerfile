@@ -40,19 +40,18 @@ RUN apt-get update && \
       libgl1-mesa-glx \
       libgl-dev \
       compton \
+      x11-apps \
+      x11-utils \
       hsetroot && \
-      cargo install umberwm alacritty myumberbar && \
+      cargo install umberwm alacritty && \
       useradd -m user --uid=1000
 RUN chsh -s /bin/bash user
 USER user
 WORKDIR /home/user
-RUN wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/DroidSansMono.zip
-RUN unzip DroidSansMono.zip 
-RUN mkdir ~/.fonts
-RUN unzip DroidSansMono.zip -d ~/.fonts
-RUN fc-cache -fv
 RUN mkdir ~/.config
 COPY umberwm.ron .config/umberwm.ron
-COPY change-color.sh .
+COPY action-handler.sh .
+COPY alacritty-umbertutor.yml .
+COPY umbertutor.sh .
 COPY ./start-umberwm .
 CMD ["./start-umberwm"]
